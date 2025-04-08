@@ -29,18 +29,18 @@
 <body>
   <div id="note">Loading...</div>
   <script>
+    const allowedReferrer = "https://link-target.net/256968/legend-hub-key-2025"; // Linkvertise URL after task completion
+    const referrer = document.referrer;
     const urlParams = new URLSearchParams(window.location.search);
     const allowedQueryKey = "legend2025";
-  
+
     const noteDiv = document.getElementById("note");
-  
-    // Check if the URL contains the key in the query string
-    if (!urlParams.has('key') || urlParams.get('key') !== allowedQueryKey) {
-      noteDiv.textContent = "⛔ Access denied. Bypass Detected";
-    } else {
-      // ✏️ Your actual note
-      const noteText = `76454634578781023789021890321321432`;
-  
+
+    // Check if the referrer starts with the allowed URL or if the query parameter 'key' matches 'legend2025'
+    if (referrer.startsWith(allowedReferrer) || urlParams.get('key') === allowedQueryKey) {
+      // Task has been completed via Linkvertise or the URL has the valid key
+      const noteText = `96454634578781023789021890321321432`; // Display the note text or whatever content you'd like
+
       const hashCode = (str) => {
         let hash = 0;
         for (let i = 0; i < str.length; i++) {
@@ -49,16 +49,19 @@
         }
         return hash;
       };
-  
+
       const noteHash = hashCode(noteText).toString();
       const key = "note_read_" + noteHash;
-  
+
       if (localStorage.getItem(key)) {
         noteDiv.textContent = "⛔ This key has already been read. Wait for it to update!";
       } else {
         noteDiv.textContent = noteText;
-        localStorage.setItem(key, true);
+        localStorage.setItem(key, true); // Store in local storage to prevent showing the note again
       }
+    } else {
+      // If the referrer isn't the correct Linkvertise URL or the key is incorrect
+      noteDiv.textContent = "⛔ Access denied. You must complete the Linkvertise task first.";
     }
   </script>
 </body>
