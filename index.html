@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>One-Time Note</title>
+  <title>Key System Legend Offical</title>
   <style>
     body {
       font-family: sans-serif;
@@ -38,13 +38,10 @@
   
     // Check if the referrer starts with the allowed URL or if the URL contains the key in the query string
     if (!referrer.startsWith(allowedReferrer) && !urlParams.has('key') || urlParams.get('key') !== allowedQueryKey) {
-      noteDiv.textContent = "⛔ Access denied. Please use the official link to view this note.";
+      noteDiv.textContent = "⛔ Access denied. Bypass Detected";
     } else {
       // ✏️ Your actual note
-      const noteText = `This is your secret message.
-  It can only be read once.
-  
-  Edit this text to reset access.`;
+      const noteText = `3482978781023789021890321321432`;
   
       const hashCode = (str) => {
         let hash = 0;
@@ -59,7 +56,7 @@
       const key = "note_read_" + noteHash;
   
       if (localStorage.getItem(key)) {
-        noteDiv.textContent = "⛔ This note has already been read.";
+        noteDiv.textContent = "⛔ This key has already been read wait for it to update!";
       } else {
         noteDiv.textContent = noteText;
         localStorage.setItem(key, true);
