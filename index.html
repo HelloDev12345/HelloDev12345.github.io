@@ -36,6 +36,10 @@
 
     const noteDiv = document.getElementById("note");
 
+    // Debugging: log the referrer and URL params
+    console.log("Referrer: ", referrer);
+    console.log("URL Params: ", urlParams);
+
     // Check if the referrer starts with the allowed URL or if the query parameter 'key' matches 'legend2025'
     if (referrer.startsWith(allowedReferrer) || urlParams.get('key') === allowedQueryKey) {
       // Task has been completed via Linkvertise or the URL has the valid key
