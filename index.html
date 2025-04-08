@@ -29,19 +29,17 @@
 <body>
   <div id="note">Loading...</div>
   <script>
-    const allowedReferrer = "https://link-target.net/256968/legend-hub-key-2025";
-    const referrer = document.referrer;
     const urlParams = new URLSearchParams(window.location.search);
     const allowedQueryKey = "legend2025";
   
     const noteDiv = document.getElementById("note");
   
-    // Check if the referrer starts with the allowed URL OR if the URL contains the key in the query string
-    if (!(referrer.startsWith(allowedReferrer) || urlParams.has('key') && urlParams.get('key') === allowedQueryKey)) {
+    // Check if the URL contains the key in the query string
+    if (!urlParams.has('key') || urlParams.get('key') !== allowedQueryKey) {
       noteDiv.textContent = "⛔ Access denied. Bypass Detected";
     } else {
       // ✏️ Your actual note
-      const noteText = `56454634578781023789021890321321432`;
+      const noteText = `76454634578781023789021890321321432`;
   
       const hashCode = (str) => {
         let hash = 0;
@@ -56,7 +54,7 @@
       const key = "note_read_" + noteHash;
   
       if (localStorage.getItem(key)) {
-        noteDiv.textContent = "⛔ This key has already been read wait for it to update!";
+        noteDiv.textContent = "⛔ This key has already been read. Wait for it to update!";
       } else {
         noteDiv.textContent = noteText;
         localStorage.setItem(key, true);
