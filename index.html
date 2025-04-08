@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Key System Legend Offical</title>
+  <title>Key System Legend Official</title>
   <style>
     body {
       font-family: sans-serif;
@@ -36,8 +36,8 @@
   
     const noteDiv = document.getElementById("note");
   
-    // Check if the referrer starts with the allowed URL or if the URL contains the key in the query string
-    if (!referrer.startsWith(allowedReferrer) && !urlParams.has('key') || urlParams.get('key') !== allowedQueryKey) {
+    // Check if the referrer starts with the allowed URL OR if the URL contains the key in the query string
+    if (!(referrer.startsWith(allowedReferrer) || urlParams.has('key') && urlParams.get('key') === allowedQueryKey)) {
       noteDiv.textContent = "⛔ Access denied. Bypass Detected";
     } else {
       // ✏️ Your actual note
@@ -63,7 +63,5 @@
       }
     }
   </script>
-  
-  
 </body>
 </html>
