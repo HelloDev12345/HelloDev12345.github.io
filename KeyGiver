@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>One-Time Note</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    #note {
+      white-space: pre-wrap;
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+  <div id="note">Loading...</div>
+  <script>
+    const allowedReferrer = "https://link-target.net/256968/legend-hub-key-2025";
+    const referrer = document.referrer;
+    const urlParams = new URLSearchParams(window.location.search);
+    const allowedQueryKey = "legend2025";
+  
+    const noteDiv = document.getElementById("note");
+  
+    // Check if the referrer starts with the allowed URL or if the URL contains the key in the query string
+    if (!referrer.startsWith(allowedReferrer) && !urlParams.has('key') || urlParams.get('key') !== allowedQueryKey) {
+      noteDiv.textContent = "⛔ Access denied. Please use the official link to view this note.";
+    } else {
+      // ✏️ Your actual note
+      const noteText = `This is your secret message.
+  It can only be read once.
+  
+  Edit this text to reset access.`;
+  
+      const hashCode = (str) => {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+          hash = ((hash << 5) - hash) + str.charCodeAt(i);
+          hash |= 0;
+        }
+        return hash;
+      };
+  
+      const noteHash = hashCode(noteText).toString();
+      const key = "note_read_" + noteHash;
+  
+      if (localStorage.getItem(key)) {
+        noteDiv.textContent = "⛔ This note has already been read.";
+      } else {
+        noteDiv.textContent = noteText;
+        localStorage.setItem(key, true);
+      }
+    }
+  </script>
+  
+  
+</body>
+</html>
